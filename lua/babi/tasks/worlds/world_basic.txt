@@ -1,73 +1,71 @@
-# locations
+# containers and locations
 
-create bedroom
-set bedroom is_thing
-set bedroom is_location
+create store
+set store is_thing
+set store is_location
 
-create kitchen
-set kitchen is_thing
-set kitchen is_location
+create checkout
+set checkout is_thing
+set checkout is_location
 
-create garden
-set garden is_thing
-set garden is_location
+create chat
+set chat is_thing
+set chat is_location
 
-create hallway
-set hallway is_thing
-set hallway is_location
+create conversation
+set conversation is_thing
+set conversation is_location
 
-create bathroom
-set bathroom is_thing
-set bathroom is_location
 
-create office
-set office is_thing
-set office is_location
+create cart
+set cart is_thing
+set cart is_container
 
-# small (moveable) objects
+create wishlist
+set wishlist is_thing
+set wishlist is_container
 
-create apple
-set apple is_thing
-set apple is_gettable
-set apple is_in kitchen
 
-create football
-set football is_thing
-set football is_gettable
-set football is_in garden
+create favorites
+set favorites is_thing
+set favorites is_container
 
-create milk
-set milk is_thing
-set milk is_gettable
-set milk is_in kitchen
 
-# objects
+create listed
+set listed is_thing
+set listed is_container
 
-create table
-set table is_thing
-set table is_in kitchen
 
 # actors
-create John
-set John is_actor
-set John is_in kitchen
-set John is_god
-set John is_male
 
-create Mary
-set Mary is_actor
-set Mary is_in bedroom
-set Mary is_god
-set Mary is_female
+create Alan
+set Alan is_actor
+set Alan is_god
+set Alan is_male
 
-create Sandra
-set Sandra is_actor
-set Sandra is_in garden
-set Sandra is_god
-set Sandra is_female
+create Alice
+set Alice is_actor
+set Alice is_god
+set Alice is_female
 
-create Daniel
-set Daniel is_actor
-set Daniel is_in hallway
-set Daniel is_god
-set Daniel is_male
+# products 
+
+create 'Bayaband Clogs'
+set 'Bayaband Clogs' is_thing
+set 'Bayaband Clogs' is_gettable
+
+create 'Classic Color Combo Clogs'
+set 'Classic Color Combo Clogs' is_thing
+set 'Classic Color Combo Clogs' is_gettable
+
+create 'Translucent Tote'
+set 'Translucent Tote' is_thing
+set 'Translucent Tote' is_gettable
+
+create 'Classic Clog'
+set 'Classic Clog' is_thing
+set 'Classic Clog' is_gettable
+
+create Baya
+set Baya is_thing
+set Baya is_gettable

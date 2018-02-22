@@ -22,10 +22,10 @@ function WhereIsObject:generate_story(world, knowledge, story)
     local num_questions = 0
     local story_length = 0
 
-    local allowed_actions = {actions.get, actions.drop, actions.teleport}
+    local allowed_actions = {actions.get, actions.select, actions.teleport}
     while num_questions < 5 do
         local clause
-        while not clause do
+            while not clause do
             local random_action =
                 allowed_actions[math.random(#allowed_actions)]
             if torch.isTypeOf(random_action, 'babi.Teleport') then
@@ -36,7 +36,7 @@ function WhereIsObject:generate_story(world, knowledge, story)
             else
                 clause = babi.Clause.sample_valid(
                     world, {true}, world:get_actors(),
-                    {actions.get, actions.drop}, world:get_objects()
+                    {actions.get, actions.select}, world:get_objects()
                 )
             end
         end

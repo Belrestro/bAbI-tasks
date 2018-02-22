@@ -219,9 +219,33 @@ do
     function SimpleGet:render(actor)
         actor = actor or self:clause().actor.name
         local templates = {
-            '%s grabbed the %s',
-            '%s took the %s',
-            '%s got the %s'
+            '%s got the %s',
+            '%s orederd the %s', 
+            '%s requested the %s'
+        }
+        return tablex.map(string.format, templates,
+                          actor, self:clause().args[1].name)
+    end
+end
+
+do
+    local SimpleSelect, parent = torch.class('SimpleSelect', 'Simple', templates)
+
+    function SimpleSelect:__init(...)
+        parent.__init(self, ...)
+    end
+
+    function SimpleSelect:is_valid()
+        if torch.isTypeOf(self:clause().action, 'babi.Select') and
+                not self:clause().args[2] then
+            return true
+        end
+    end
+
+    function SimpleSelect:render(actor)
+        actor = actor or self:clause().actor.name
+        local templates = {
+            '%s selected the %s',
         }
         return tablex.map(string.format, templates,
                           actor, self:clause().args[1].name)
@@ -244,9 +268,9 @@ do
 
     function CountGet:render()
         local templates = {
-            '%s grabbed %s %s',
-            '%s took %s %s',
-            '%s got %s %s'
+            '%s got %s %s',
+            '%s orederd %s %s',
+            '%s requested %s %s'
         }
         local count = self:clause().args[3]
         return tablex.map(
@@ -315,9 +339,8 @@ do
         end
         local templates = {
             '%s went to the %s',
-            '%s journeyed to the %s',
-            '%s travelled to the %s',
-            '%s moved to the %s',
+            '%s processed to the %s',
+            '%s moved to the %s'
         }
         templates = tablex.map(
             function(t)
@@ -353,8 +376,7 @@ do
                          'then %s', '%s then'}
         local templates = {
             ' went to the %s',
-            ' journeyed to the %s',
-            ' travelled to the %s',
+            ' processed to the %s',
             ' moved to the %s',
         }
         return tablex.map(string.format, combinations(adverbs, templates),
@@ -1507,6 +1529,7 @@ end
 --     YesNoIsIn,
 --     CompoundCoreferenceTeleport,
 --     CountGet,
+--     SimepleSelect,
 --     Owes,
 --     HasCost,
 --     BuyGet,

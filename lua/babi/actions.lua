@@ -129,6 +129,26 @@ do
     end
 end
 
+do 
+    local Select = torch.class('babi.Select', 'babi.Action', babi)
+
+    function Select:perform(world, a0, a1)
+        a1.is_in = a0
+        a0.carry = a0.carry + a1.size
+    end
+
+    function Select:is_valid(world, a0, a1, a2, a3)
+        return true
+    end
+
+    function Select:update_knowledge(world, knowledge, clause, a0, a1)
+        if clause.truth_value then
+            -- We now know the a0 is holding this a1.
+            knowledge[a1]:set('is_in', a0, true, Set{clause})
+        end
+    end
+end
+
 do
     local SetProperty = torch.class('babi.SetProperty', 'babi.Action', babi)
 
@@ -301,5 +321,6 @@ end
 return {
     get=babi.Get, drop=babi.Drop, give=babi.Give, teleport=babi.Teleport,
     create=babi.Create, set=babi.SetProperty, set_dir=babi.SetDir,
-    set_pos=babi.SetPos
+    set_pos=babi.SetPos, 
+    select=babi.Select
 }
